@@ -14,11 +14,11 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-      - run: unzip -q StatusBarIOS.zip -d work
       - name: Build
-        working-directory: work/VolumeBar
         run: gradle assembleDebug --no-daemon
+      - name: Renomear APK
+        run: cp app/build/outputs/apk/debug/app-debug.apk VolumeIos.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: VolumeBar
-          path: work/VolumeBar/app/build/outputs/apk/debug/app-debug.apk
+          name: VolumeIos
+          path: VolumeIos.apk
